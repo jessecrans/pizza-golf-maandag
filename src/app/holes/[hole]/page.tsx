@@ -3,10 +3,7 @@ import React from 'react'
 import { promises as fs } from 'fs'
 import HoleInfo from './components/HoleInfo'
 import HoleImage from './components/HoleImage'
-import Link from 'next/link'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import HoleArrows from './components/HoleArrows'
 
 const Hole = async ({
   params
@@ -23,6 +20,7 @@ const Hole = async ({
         par={holeData.par}
         difficulty={holeData.difficulty}
       />
+      <HoleArrows params={params} />
       {
         holeData.images.map((image, index) => (
           <HoleImage
@@ -33,18 +31,7 @@ const Hole = async ({
           />
         ))
       }
-      <div className="flex justify-between items-center p-4">
-        {
-          <Link className={'text-2xl ' + (parseInt(params.hole) > 1 ? 'hover:opacity-60' : 'pointer-events-none opacity-40')} href={`/holes/${parseInt(params.hole) - 1}`}>
-            <FontAwesomeIcon icon={faArrowLeft} />
-          </Link>
-        }
-        {
-          <Link className={'text-2xl ' + (parseInt(params.hole) < 18 ? 'hover:opacity-60' : 'pointer-events-none opacity-40')} href={`/holes/${parseInt(params.hole) + 1}`}>
-            <FontAwesomeIcon icon={faArrowRight} />
-          </Link>
-        }
-      </div>
+      <HoleArrows params={params} />
     </PageLayout>
   )
 }

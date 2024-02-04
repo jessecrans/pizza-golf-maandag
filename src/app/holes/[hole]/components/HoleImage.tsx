@@ -10,7 +10,7 @@ const HoleImage = ({
   index: number
 }) => {
   return (
-    <div className='flex flex-col justify-start items-center lg:grid lg:grid-cols-2 gap-4 bg-green-950 bg-opacity-50 p-4 my-4 rounded'>
+    <div className='flex flex-col justify-start items-center lg:grid lg:grid-cols-2 gap-4 bg-green-950 bg-opacity-50 p-4 mb-4 rounded'>
       <img
         src={image}
         alt={`image ${index}`}
