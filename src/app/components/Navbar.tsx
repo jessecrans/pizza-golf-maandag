@@ -16,6 +16,12 @@ const Navbar = () => {
           <Link href='/scores'>Scores</Link>
         </li>
         <li>
+          <Link href='/stats'>Stats</Link>
+        </li>
+        <li>
+          <Link href='/spelers'>Spelers</Link>
+        </li>
+        <li>
           <Link href='/over'>OVER</Link>
         </li>
       </ul>
