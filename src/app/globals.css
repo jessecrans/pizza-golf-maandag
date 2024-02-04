@@ -3,9 +3,15 @@
 @tailwind utilities;
 
 @layer base {
-  a, Link {
+  a, Link, button {
     @apply text-yellow-200;
     @apply hover:underline;
     @apply font-bold;
+  }
+  h3 {
+    @apply text-yellow-200;
+    @apply text-2xl;
+    @apply font-bold;
+    @apply uppercase;
   }
 }

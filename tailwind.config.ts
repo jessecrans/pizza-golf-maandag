@@ -10,9 +10,14 @@ const config: Config = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        '18': 'repeat(18, minmax(0, 1fr))',
+        '26': 'repeat(26, minmax(0, 1fr))',
+        '18': 'repeat(18, minmax(0, 1fr))', // Added col-span-18
+      },
+      gridColumn: {
+        'span-18': 'span 18 / span 18', // Added col-span-18
       }
-    }
-  }
+    },
+  },
 };
+
 export default config;
