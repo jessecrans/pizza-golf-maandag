@@ -69,5 +69,4 @@ export const getHoleData = async ({
   return data as HoleData;
 }
 
-
 export default Hole
