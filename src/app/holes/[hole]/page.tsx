@@ -43,7 +43,7 @@ interface HoleData {
   images: Array<string>
 }
 
-export const getHoleData = async ({
+const getHoleData = async ({
   params
 }: {
   params: {
