@@ -50,7 +50,7 @@ const getHoleData = async ({
     hole: string
   }
 }) => {
-  const holePath = `public/holes/hole${params.hole}`;
+  const holePath = `./public/holes/hole${params.hole}`;
   const file = await fs.readFile(`${holePath}/info.json`, 'utf-8');
   let data = JSON.parse(file);
 
