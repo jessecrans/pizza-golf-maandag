@@ -22,8 +22,11 @@ export default function Home() {
       <p>
         Welkom bij Pizza Golf Maandag!
       </p>
-      <br/>
-      <p>Winnaar van deze week: {getLatestWinner()}</p> 
+      <br />
+      <div className="text-center">
+        <h2 className="text-yellow-200 text-2xl font-bold">Winnaar van de week</h2>
+        <p className="text-white text-4xl">{getLatestWinner()}</p>
+      </div>
       <br />
       <p>
         Op deze site kun je alles vinden over Pizza Golf Maandag. Strategieën voor elke hole, speler profielen en de statistieken van elke gespeelde ronde
