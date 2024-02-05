@@ -8,15 +8,17 @@ const Scores = () => {
     <PageLayout
       title='Scores'
     >
-      <div className='flex flex-col justify-between items-center mb-2'>
+      <div className='grid grid-cols-3 gap-4 mb-2 text-center'>
         {
-          gameData.map((game, index) => {
-            return (
-              <Link key={game.date} href={`/scores/${game.date}`}>
-                {game.date}
-              </Link>
-            )
-          })
+          gameData
+            .reverse()
+            .map((game, index) => {
+              return (
+                <Link key={game.date} href={`/scores/${game.date}`}>
+                  {game.date}
+                </Link>
+              )
+            })
         }
       </div>
     </PageLayout>
