@@ -25,6 +25,7 @@ const config: Config = {
       }
     },
   },
+  important: true, // super important line NO DELETE PLZ PLS
 };
 
 export default config;

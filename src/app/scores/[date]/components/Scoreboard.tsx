@@ -16,7 +16,12 @@ const Scoreboard = ({
 
   return (
     // does not work for small screeens because for some reason the grid-cols-[] is not applied
-    <div className={`m-auto p-4 bg-green-950 bg-opacity-50 rounded grid grid-cols-[5rem_3.5rem_repeat(${gameData.players.length},_minmax(7rem,_1fr))] gap-2 overflow-auto text-right max-w-screen-xl lg:grid-cols-1`}>
+    <div
+      style={{
+        gridTemplateColumns: `5rem 3.5rem repeat(${gameData.players.length}, minmax(7rem, 1fr))`
+      }}
+      className='m-auto p-4 bg-green-950 bg-opacity-50 rounded grid gap-2 overflow-auto text-right max-w-screen-xl lg:grid-cols-1'
+    >
       <div className='grid grid-rows-20 p-2 gap-2 lg:grid-rows-1 lg:grid-cols-26'>
         <h3 className='text-yellow-200 text-xl font-bold uppercase lg:col-span-4'>Holes</h3>
         <div className='row-span-18 grid grid-rows-subgrid px-2 text-lg lg:row-span-1 lg:col-span-18 lg:grid-cols-18'>
