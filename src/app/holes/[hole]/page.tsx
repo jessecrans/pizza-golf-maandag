@@ -13,6 +13,8 @@ const Hole = async ({
     hole: string
   }
 }) => {
+  console.log(process.cwd());
+
   const holeData = await getHoleData({ params });
 
   return (
