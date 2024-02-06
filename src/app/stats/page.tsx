@@ -6,7 +6,6 @@ const Stats = () => {
 
   return (
     <PageLayout title='Stats'>
-      <p>Kom later terug voor meer stats.</p>
       <Scoreboard />
     </PageLayout>
   )
