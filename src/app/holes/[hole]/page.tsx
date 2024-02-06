@@ -4,31 +4,29 @@ import { promises as fs } from 'fs'
 import HoleInfo from './components/HoleInfo'
 import HoleImage from './components/HoleImage'
 import HoleArrows from './components/HoleArrows'
-// import '../../../../public/holes'
+import holeData from '../../../../public/holes/info.json'
 
-const Hole = async ({
+const Hole = ({
   params
 }: {
   params: {
     hole: string
   }
 }) => {
-  console.log(process.cwd());
-
-  const holeData = await getHoleData({ params });
+  const currentHoleData = getHoleData({ params });
 
   return (
     <PageLayout title={`HOLE ${params.hole}`}>
       <HoleInfo
-        par={holeData.par}
-        difficulty={holeData.difficulty}
+        par={currentHoleData.par}
+        difficulty={currentHoleData.difficulty}
       />
       <HoleArrows params={params} />
       {
-        holeData.images.map((image, index) => (
+        currentHoleData.images.map((image, index) => (
           <HoleImage
             key={index}
-            description={holeData.descriptions[index]}
+            description={currentHoleData.descriptions[index]}
             image={image}
             index={index + 1}
           />
@@ -39,22 +37,21 @@ const Hole = async ({
   )
 }
 
-interface HoleData {
+type HoleData = {
   par: number
   difficulty: number
-  descriptions: Array<string>
-  images: Array<string>
+  descriptions: string[]
+  images: string[]
 }
 
-const getHoleData = async ({
+const getHoleData = ({
   params
 }: {
   params: {
     hole: string
   }
 }) => {
-  const file = await fs.readFile(`public/holes/hole${params.hole}/info.json`, 'utf-8');
-  let data = JSON.parse(file);
+  let data = holeData[parseInt(params.hole)]
 
   // getting hole images
   const imageCount = data.descriptions.length;
@@ -62,13 +59,13 @@ const getHoleData = async ({
   for (let i = 1; i <= imageCount; i++) {
     images.push(`/holes/hole${params.hole}/image${i}.png`);
   }
-  data = {
+  const parsedData = {
     ...data,
     images
   }
 
   // console.log(data);
-  return data as HoleData;
+  return parsedData as HoleData;
 }
 
 export default Hole
