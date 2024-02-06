@@ -1,6 +1,5 @@
 import PageLayout from '@/app/layouts/PageLayout'
 import React from 'react'
-import { promises as fs } from 'fs'
 import HoleInfo from './components/HoleInfo'
 import HoleImage from './components/HoleImage'
 import HoleArrows from './components/HoleArrows'
@@ -51,7 +50,7 @@ const getHoleData = ({
     hole: string
   }
 }) => {
-  let data = holeData[parseInt(params.hole)]
+  let data = holeData[parseInt(params.hole) - 1]
 
   // getting hole images
   const imageCount = data.descriptions.length;
