@@ -53,7 +53,7 @@ const getHoleData = async ({
     hole: string
   }
 }) => {
-  const file = await fs.readFile(`public/holes/hole${params.hole}/info.json`, 'utf-8');
+  const file = await fs.readFile(`/holes/hole${params.hole}/info.json`, 'utf-8');
   let data = JSON.parse(file);
 
   // getting hole images
