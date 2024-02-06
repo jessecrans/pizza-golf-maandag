@@ -63,7 +63,6 @@ const getHoleData = ({
     images
   }
 
-  // console.log(data);
   return parsedData as HoleData;
 }
 

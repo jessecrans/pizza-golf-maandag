@@ -10,9 +10,9 @@ const ScoreboardPage = ({
     date: string
   }
 }) => {
-  const currentGameData = gameData.find((game) => game.date === params.date);
+  const currentGameData = gameData.find((game) => game.date === params.date); // find the game data that matches the date in the URL
 
-  if (!currentGameData) {
+  if (!currentGameData) { // for invalid dates
     return (
       <PageLayout title={`${params.date}`}>
         <h2>Game not found</h2>
