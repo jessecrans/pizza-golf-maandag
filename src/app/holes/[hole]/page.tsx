@@ -4,6 +4,7 @@ import { promises as fs } from 'fs'
 import HoleInfo from './components/HoleInfo'
 import HoleImage from './components/HoleImage'
 import HoleArrows from './components/HoleArrows'
+// import '../../../../public/holes'
 
 const Hole = async ({
   params
@@ -50,8 +51,7 @@ const getHoleData = async ({
     hole: string
   }
 }) => {
-  const holePath = `./public/holes/hole${params.hole}`;
-  const file = await fs.readFile(`${holePath}/info.json`, 'utf-8');
+  const file = await fs.readFile(process.cwd() + `/public/holes/hole${params.hole}/info.json`, 'utf-8');
   let data = JSON.parse(file);
 
   // getting hole images
