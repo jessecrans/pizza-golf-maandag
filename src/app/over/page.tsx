@@ -5,7 +5,7 @@ const Over = () => {
   return (
     <PageLayout title='Over'>
       <p>
-        Pizza Golf Maaandag wordt elke maandag gespeeld in de game <a href='https://store.steampowered.com/app/431240/Golf_With_Your_Friends/' target='_blank'>Golf With Your Friends</a>, op de <a href='https://steamcommunity.com/sharedfiles/filedetails/?id=1689558573&searchtext=' target='_blank'>Pizzeria</a> map, gemaakt door <a href='https://steamcommunity.com/profiles/76561198135099596' target='_blank'>SirLeOssi</a>.
+        Pizza Golf Maandag wordt elke maandag gespeeld in de game <a href='https://store.steampowered.com/app/431240/Golf_With_Your_Friends/' target='_blank'>Golf With Your Friends</a>, op de <a href='https://steamcommunity.com/sharedfiles/filedetails/?id=1689558573&searchtext=' target='_blank'>Pizzeria</a> map, gemaakt door <a href='https://steamcommunity.com/profiles/76561198135099596' target='_blank'>SirLeOssi</a>.
       </p>
       <br />
       <p>

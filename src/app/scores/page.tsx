@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import gameData from '../../../public/game_data/game_database.json'
 import PageLayout from '../layouts/PageLayout';
 
 const Scores = () => {
+
+
   return (
     <PageLayout
       title='Scores'
@@ -11,7 +13,8 @@ const Scores = () => {
       <div className='grid grid-cols-3 gap-4 mb-2 text-center'>
         {
           gameData
-            .toReversed()
+            .slice()
+            .reverse()
             .map((game, index) => {
               return (
                 <Link
