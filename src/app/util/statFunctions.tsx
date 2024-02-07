@@ -170,7 +170,7 @@ export const getSilverCounts = () => {
       }
     })
 
-    if (!game.scores[1]) {
+    if (1 >= game.scores.length) {
       return
     }
 
@@ -182,7 +182,7 @@ export const getSilverCounts = () => {
     }
 
     let silverIndex = 1;
-    while (game.scores[silverIndex] && game.scores[silverIndex].reduce((a, b) => a + b) === silverScore) {
+    while (silverIndex < game.scores.length && game.scores[silverIndex].reduce((a, b) => a + b) === silverScore) {
       silverCounts[game.players[silverIndex]]++;
       silverIndex++;
     }
@@ -201,7 +201,7 @@ export const getBronzeCounts = () => {
       }
     })
 
-    if (!game.scores[2]) {
+    if (2 >= game.scores.length) {
       return
     }
 
@@ -213,7 +213,7 @@ export const getBronzeCounts = () => {
     }
 
     let bronzeIndex = 2;
-    while (game.scores[bronzeIndex] && game.scores[bronzeIndex].reduce((a, b) => a + b) === bronzeScore) {
+    while (bronzeIndex < game.scores.length && game.scores[bronzeIndex].reduce((a, b) => a + b) === bronzeScore) {
       bronzeCounts[game.players[bronzeIndex]]++;
       bronzeIndex++;
     }
