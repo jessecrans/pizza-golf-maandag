@@ -6,6 +6,11 @@ type GameData = {
   scores: number[][],
 }
 
+const holePars = [
+  3, 3, 4, 4, 7, 7, 4, 3, 4, 4, 4, 5, 4, 5, 4, 4, 5, 5
+]
+
+
 // obtain all players that have played at least one game
 export const getAllPlayers = () => {
   let players: string[] = []
@@ -160,6 +165,7 @@ export const getWorstScores = () => {
   return worstScores;
 }
 
+// Obtain the number of silver medals for each player
 export const getSilverCounts = () => {
   let silverCounts: { [key: string]: number } = {};
 
@@ -191,6 +197,7 @@ export const getSilverCounts = () => {
   return silverCounts;
 }
 
+// Obtain the number of bronze medals for each player
 export const getBronzeCounts = () => {
   let bronzeCounts: { [key: string]: number } = {};
 
@@ -220,4 +227,165 @@ export const getBronzeCounts = () => {
   })
 
   return bronzeCounts;
+}
+
+export const getPizzaScores = () => {
+  let pizzaScores: { [key: string]: number } = {};
+  let betterThanPars: { [key: string]: number[] } = {};
+
+  gameData.forEach(game => {
+    game.players.forEach(player => {
+      if (!betterThanPars[player]) {
+        betterThanPars[player] = [];
+      }
+    })
+
+    game.scores.forEach((scoreForPlayer, i) => {
+      scoreForPlayer.forEach((score, j) => {
+        betterThanPars[game.players[i]].push(score <= holePars[j] ? 1 : 0);
+      })
+    })
+  })
+
+  for (const [player, betterThanParArray] of Object.entries(betterThanPars)) {
+    pizzaScores[player] = betterThanParArray.reduce((a, b) => a + b) / betterThanParArray.length
+  }
+
+  return pizzaScores;
+}
+
+// Obtain the best hole for each player
+export const getBestHoles = () => {
+  let bestHoles: { [key: string]: number } = {};
+
+  const averageScoresPerHolePerPlayer: { [key: string]: number }[] = holePars.map((_, i) => getAverageScoresPerHole(i + 1));
+  const averageScoresPerHole = averageScoresPerHolePerPlayer.map((scoresPerPlayer) => {
+    let sum = 0;
+    Object.entries(scoresPerPlayer).forEach(([_, score]) => {
+      sum += score;
+    })
+    return sum / Object.keys(scoresPerPlayer).length;
+  })
+
+  averageScoresPerHolePerPlayer.forEach((scoresPerPlayer, index) => {
+    Object.entries(scoresPerPlayer).forEach(([player, score]) => {
+      if (!bestHoles[player]) {
+        bestHoles[player] = index;
+      }
+      const currentDifference = (score - averageScoresPerHole[index]);
+      const bestDifference = (averageScoresPerHolePerPlayer[bestHoles[player]][player] - averageScoresPerHole[bestHoles[player]]);
+      if (currentDifference < bestDifference) {
+        bestHoles[player] = index;
+      }
+    })
+  })
+
+  return bestHoles;
+}
+
+// Obtain the worst hole for each player
+export const getWorstHoles = () => {
+  let worstHoles: { [key: string]: number } = {};
+
+  const averageScoresPerHolePerPlayer: { [key: string]: number }[] = holePars.map((_, i) => getAverageScoresPerHole(i + 1));
+  const averageScoresPerHole = averageScoresPerHolePerPlayer.map((scoresPerPlayer) => {
+    let sum = 0;
+    Object.entries(scoresPerPlayer).forEach(([_, score]) => {
+      sum += score;
+    })
+    return sum / Object.keys(scoresPerPlayer).length;
+  })
+
+  averageScoresPerHolePerPlayer.forEach((scoresPerPlayer, index) => {
+    Object.entries(scoresPerPlayer).forEach(([player, score]) => {
+      if (!worstHoles[player]) {
+        worstHoles[player] = index;
+      }
+      const currentDifference = (score - averageScoresPerHole[index]);
+      const worstDifference = (averageScoresPerHolePerPlayer[worstHoles[player]][player] - averageScoresPerHole[worstHoles[player]]);
+      if (currentDifference > worstDifference) {
+        worstHoles[player] = index;
+      }
+    })
+  })
+
+  return worstHoles;
+}
+
+// Obtain the number of hole in ones for each player
+export const getHoleInOnes = () => {
+  let holeInOnes: { [key: string]: number } = {};
+
+  gameData.forEach(game => {
+    game.players.forEach((player, index) => {
+      if (!holeInOnes[player]) {
+        holeInOnes[player] = 0;
+      }
+
+      game.scores[index].forEach(score => {
+        if (score === 1) {
+          holeInOnes[player]++;
+        }
+      })
+    })
+  })
+
+  return holeInOnes;
+}
+
+// Obtain the number of albatrosses for each player
+export const getAlbatrosses = () => {
+  let albatrosses: { [key: string]: number } = {};
+
+  getAllPlayers().forEach(player => albatrosses[player] = 0);
+
+  gameData.forEach(game => {
+    game.scores.forEach((scoresThisGame, i) => {
+      scoresThisGame.forEach((score, j) => {
+        if (score !== 1 && score === holePars[j] - 3) {
+          albatrosses[game.players[i]]++;
+        }
+      })
+    })
+  })
+
+  return albatrosses;
+}
+
+// Obtain the number of eagles for each player
+export const getEagles = () => {
+  let eagles: { [key: string]: number } = {};
+
+  getAllPlayers().forEach(player => eagles[player] = 0);
+
+  gameData.forEach(game => {
+    game.scores.forEach((scoresThisGame, i) => {
+      scoresThisGame.forEach((score, j) => {
+        if (score !== 1 && score === holePars[j] - 2) {
+          eagles[game.players[i]]++;
+        }
+      })
+    })
+  })
+
+  return eagles;
+}
+
+// Obtain the number of birdies for each player
+export const getBirdies = () => {
+  let birdies: { [key: string]: number } = {};
+
+  getAllPlayers().forEach(player => birdies[player] = 0);
+
+  gameData.forEach(game => {
+    game.scores.forEach((scoresThisGame, i) => {
+      scoresThisGame.forEach((score, j) => {
+        if (score !== 1 && score === holePars[j] - 1) {
+          birdies[game.players[i]]++;
+        }
+      })
+    })
+  })
+
+  return birdies;
 }

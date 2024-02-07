@@ -12,7 +12,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className='m-2 mb-0 rounded border-2 border-green-400 text-white text-4xl font-bold uppercase text-center'>
+    <nav className='m-2 mb-0 rounded border-2 border-green-400 text-white text-4xl font-bold uppercase text-center min-w-fit'>
       <div className='bg-green-400 bg-opacity-70 p-4 text-2xl sm:text-4xl flex justify-between items-center sm:block'>
         <Link href="/">
           <FontAwesomeIcon

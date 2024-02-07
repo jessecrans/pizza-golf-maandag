@@ -10,6 +10,15 @@ const PlayerPage = ({
     player: string
   }
 }) => {
+  const allPlayers = statFuntions.getAllPlayers()
+  if (!allPlayers.includes(params.player)) {
+    return (
+      <PageLayout title='404'>
+        <p>Geen speler gevonden met die naam.</p>
+      </PageLayout>
+    )
+  }
+
   return (
     <PageLayout title={params.player}>
       <PlayerProfile player={params.player} />

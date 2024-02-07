@@ -20,16 +20,16 @@ const Spelers = () => {
 }
 
 /*
-      stats:
-      number of gold, silver, bronze
-      best n worst score
-      average score
-      number of hole in ones
-      number of eagles
-      number of birdies
-      best hole: grootste percentage verschil met gemiddeld
-      slechtste hole: grootste percentage verschil met gemiddeld
-      pizza rating: average score, average finish position, percentage wins, percentage of top 3 finishes
-      */
+  stats:
+  number of gold, silver, bronze
+  best n worst score
+  average score
+  number of hole in ones
+  number of eagles
+  number of birdies
+  best hole: grootste percentage verschil met gemiddeld
+  slechtste hole: grootste percentage verschil met gemiddeld
+  pizza rating: average score, average finish position, percentage wins, percentage of top 3 finishes
+*/
 
 export default Spelers

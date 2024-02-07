@@ -19,7 +19,7 @@ const HoleCard = ({
           alt={`Hole ${hole} image`}
           className='rounded -z-1'
         />
-        <div className='absolute bottom-0 right-0 bg-green-400 z-1 rounded-tl-2xl text-lg flex justify-center items-center w-16 h-16'>
+        <div className='absolute bottom-0 right-0 bg-green-400 z-1 rounded-tl-2xl text-3xl flex justify-center items-center w-16 h-16'>
           {hole}
         </div>
       </div>

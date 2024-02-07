@@ -12,6 +12,14 @@ const Hole = ({
     hole: string
   }
 }) => {
+  if (parseInt(params.hole) < 1 || parseInt(params.hole) > 18) {
+    return (
+      <PageLayout title='404'>
+        <p>Geen hole gevonden met dit getal.</p>
+      </PageLayout>
+    )
+  }
+
   const currentHoleData = getHoleData({ params });
 
   return (
