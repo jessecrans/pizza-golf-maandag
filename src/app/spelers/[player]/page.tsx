@@ -3,7 +3,7 @@ import PageLayout from '@/app/layouts/PageLayout'
 import PlayerProfile from './components/PlayerProfile'
 import * as statFuntions from '@/app/util/statFunctions'
 
-export const PlayerPage = ({
+const PlayerPage = ({
   params
 }: {
   params: {

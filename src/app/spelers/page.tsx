@@ -1,7 +1,6 @@
 import React from 'react'
 import PageLayout from '../layouts/PageLayout'
 import { getAllPlayers } from '@/app/util/statFunctions'
-import gameData from '../../../public/game_data/game_database.json'
 import Link from 'next/link'
 
 const Spelers = () => {
@@ -9,7 +8,7 @@ const Spelers = () => {
     <PageLayout title='spelers'>
       <ul className='flex flex-col'>
         {
-          getAllPlayers({ gameData }).map((player, index) => {
+          getAllPlayers().map((player, index) => {
             return (
               <Link key={index} href={`/spelers/${player}`}>{player}</Link>
             )
