@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import gameData from '../../../../public/game_data/game_database.json'
-import { getAllPlayers, getAverageScores, getWorstScores, getBestScores, getAverageScoresPerHole, getGamesPlayed, getNumberOfWins, getAverageFinishPosition } from './statFunctions'
+import { getAllPlayers, getAverageScores, getWorstScores, getBestScores, getAverageScoresPerHole, getGamesPlayed, getNumberOfWins, getAverageFinishPosition } from '../../util/statFunctions'
 import { ScoreboardRow } from './ScoreboardRow'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSort } from '@fortawesome/free-solid-svg-icons'

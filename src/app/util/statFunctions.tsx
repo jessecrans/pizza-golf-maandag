@@ -1,3 +1,5 @@
+import gameData from '../../../public/game_data/game_database.json'
+
 type GameData = {
   date: string,
   players: string[],
@@ -22,19 +24,6 @@ export const getAllPlayers = ({
 
   return players;
 }
-
-/* 
-Stats:
-
-ranglijst
-  - totaal average
-  - average per hole
-  - number of wins
-  - average finish position
-  - games played
-  - best score
-  - worst score
-*/
 
 // Obtain average score per game per player
 export const getAverageScores = ({
@@ -202,4 +191,38 @@ export const getWorstScores = ({
   })
 
   return worstScores;
+}
+
+export const getSilverCount = () => {
+  let silverCounts: { [key: string]: number } = {};
+
+  gameData.forEach(game => {
+    const bestScore = game.scores[0].reduce((a, b) => a + b, 0);
+    let silverIndex = 1;
+    let silverScore = game.scores[silverIndex].reduce((a, b) => (a + b))
+    let currentSilverScore;
+
+    while (game.scores[silverIndex] && (currentSilverScore = game.scores[silverIndex].reduce((a, b) => a + b)) === bestScore) {
+      silverIndex++;
+    }
+
+    if (!game.scores[silverIndex]) {
+      return
+    }
+
+    while (game.scores[silverIndex] && game.scores[silverIndex].reduce((a, b) => a + b) === silverScore) {
+      if (!silverCounts[game.players[silverIndex]]) {
+        silverCounts[game.players[silverIndex]] = 0;
+      }
+      silverCounts[game.players[silverIndex]]++;
+    }
+  })
+}
+
+export const getBronzeCount = () => {
+  let bronzeCounts: { [key: string]: number } = {};
+
+  gameData.forEach(game => {
+    const bestScore = game.scores[0].reduce((a, b) => a + b, 0);
+  })
 }
