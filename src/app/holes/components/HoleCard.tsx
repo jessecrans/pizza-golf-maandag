@@ -13,14 +13,16 @@ const HoleCard = ({
       className='border-2 border-green-400 rounded hover:no-underline hover:opacity-70'
       href={`/holes/${hole}`}
     >
-      <h3 className='py-1 text-yellow-200 font-bold text-lg bg-green-400 bg-opacity-60 text-center'>
-        {hole}
-      </h3>
-      <img
-        src={image}
-        alt={`Hole ${hole} image`}
-        className='rounded-b text-center'
-      />
+      <div className='relative'>
+        <img
+          src={image}
+          alt={`Hole ${hole} image`}
+          className='rounded -z-1'
+        />
+        <div className='absolute bottom-0 right-0 bg-green-400 z-1 rounded-tl-2xl text-lg flex justify-center items-center w-16 h-16'>
+          {hole}
+        </div>
+      </div>
     </Link>
   )
 }

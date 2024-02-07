@@ -14,7 +14,7 @@ const Holes = () => {
         Hieronder vind je een overzicht van alle holes. Klik op een hole om de details en strategieën te bekijken.
       </p>
       <div className='flex justify-center'>
-        <ol className='grid grid-cols-3 gap-4 mt-4'>
+        <ol className='grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4'>
           {
             holes.map((hole) => {
               return (
