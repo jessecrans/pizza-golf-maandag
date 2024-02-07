@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSort } from '@fortawesome/free-solid-svg-icons'
 
 const Scoreboard = () => {
-  const [playerOrder, setPlayerOrder] = useState(getAllPlayers({ gameData }));
+  const [playerOrder, setPlayerOrder] = useState(getAllPlayers());
   const [sortingBy, setSortingBy] = useState('averageScore');
 
   const scoreMetrics: { // define the types of metrics to sort by
@@ -15,12 +15,12 @@ const Scoreboard = () => {
       [key: string]: number
     }
   } = {
-    averageScores: getAverageScores({ gameData }),
-    wins: getNumberOfWins({ gameData }),
-    averageFinishPositions: getAverageFinishPosition({ gameData }),
-    gamesPlayed: getGamesPlayed({ gameData }),
-    bestScores: getBestScores({ gameData }),
-    worstScores: getWorstScores({ gameData })
+    averageScores: getAverageScores(),
+    wins: getNumberOfWins(),
+    averageFinishPositions: getAverageFinishPosition(),
+    gamesPlayed: getGamesPlayed(),
+    bestScores: getBestScores(),
+    worstScores: getWorstScores()
   }
 
   const scoreHeaderNames: { // 
@@ -46,7 +46,7 @@ const Scoreboard = () => {
     }
   } = {};
 
-  getAllPlayers({ gameData }).forEach(player => {
+  getAllPlayers().forEach(player => {
     playerData[player] = {
       name: player,
       averageScore: scoreMetrics.averageScores[player],
@@ -94,11 +94,11 @@ const Scoreboard = () => {
   }) => {
     if (order === 'asc') {
       setPlayerOrder(
-        getAllPlayers({ gameData }).sort()
+        getAllPlayers().sort()
       )
     } else {
       setPlayerOrder(
-        getAllPlayers({ gameData }).sort().reverse()
+        getAllPlayers().sort().reverse()
       )
     }
   }

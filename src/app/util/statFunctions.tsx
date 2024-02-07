@@ -7,11 +7,7 @@ type GameData = {
 }
 
 // obtain all players that have played at least one game
-export const getAllPlayers = ({
-  gameData
-}: {
-  gameData: GameData[]
-}) => {
+export const getAllPlayers = () => {
   let players: string[] = []
 
   gameData.forEach(game => {
@@ -26,11 +22,7 @@ export const getAllPlayers = ({
 }
 
 // Obtain average score per game per player
-export const getAverageScores = ({
-  gameData
-}: {
-  gameData: GameData[]
-}) => {
+export const getAverageScores = () => {
   let averageScores: { [key: string]: number } = {};
   let allScores: { [key: string]: number[] } = {};
   gameData.forEach(game => {
@@ -50,12 +42,7 @@ export const getAverageScores = ({
 }
 
 // Obtain average score per hole per player
-export const getAverageScoresPerHole = ({
-  gameData, hole
-}: {
-  gameData: GameData[],
-  hole: number
-}) => {
+export const getAverageScoresPerHole = () => {
   let averageScores: { [key: string]: number } = {};
   let allScores: { [key: string]: number[] } = {};
   gameData.forEach(game => {
@@ -75,11 +62,7 @@ export const getAverageScoresPerHole = ({
 }
 
 // Obtain the average finish position for each player
-export const getAverageFinishPosition = ({
-  gameData
-}: {
-  gameData: GameData[]
-}) => {
+export const getAverageFinishPosition = () => {
   const finishPositions: { [key: string]: number[] } = {};
   const averageFinishPositions: { [key: string]: number } = {};
 
@@ -108,11 +91,7 @@ export const getAverageFinishPosition = ({
 }
 
 // Obtain the number of wins for each player
-export const getNumberOfWins = ({
-  gameData
-}: {
-  gameData: GameData[]
-}) => {
+export const getNumberOfWins = () => {
   const wins: { [key: string]: number } = {};
 
   gameData.forEach(game => {
@@ -132,11 +111,7 @@ export const getNumberOfWins = ({
 }
 
 // Obtain the number of games played by each player
-export const getGamesPlayed = ({
-  gameData
-}: {
-  gameData: GameData[]
-}) => {
+export const getGamesPlayed = () => {
   const gamesPlayed: { [key: string]: number } = {};
 
   gameData.forEach(game => {
@@ -152,11 +127,7 @@ export const getGamesPlayed = ({
 }
 
 // Obtain the best scores for any game obtained by each player
-export const getBestScores = ({
-  gameData
-}: {
-  gameData: GameData[]
-}) => {
+export const getBestScores = () => {
   const bestScores: { [key: string]: number } = {};
 
   gameData.forEach(game => {
@@ -173,11 +144,7 @@ export const getBestScores = ({
 }
 
 // Obtain the worst scores for any game obtained by each player
-export const getWorstScores = ({
-  gameData
-}: {
-  gameData: GameData[]
-}) => {
+export const getWorstScores = () => {
   const worstScores: { [key: string]: number } = {}
 
   gameData.forEach(game => {
@@ -199,10 +166,9 @@ export const getSilverCount = () => {
   gameData.forEach(game => {
     const bestScore = game.scores[0].reduce((a, b) => a + b, 0);
     let silverIndex = 1;
-    let silverScore = game.scores[silverIndex].reduce((a, b) => (a + b))
-    let currentSilverScore;
+    let silverScore;
 
-    while (game.scores[silverIndex] && (currentSilverScore = game.scores[silverIndex].reduce((a, b) => a + b)) === bestScore) {
+    while (game.scores[silverIndex] && (silverScore = game.scores[silverIndex].reduce((a, b) => a + b)) === bestScore) {
       silverIndex++;
     }
 
@@ -217,6 +183,8 @@ export const getSilverCount = () => {
       silverCounts[game.players[silverIndex]]++;
     }
   })
+
+  return silverCounts;
 }
 
 export const getBronzeCount = () => {
@@ -224,5 +192,31 @@ export const getBronzeCount = () => {
 
   gameData.forEach(game => {
     const bestScore = game.scores[0].reduce((a, b) => a + b, 0);
+    let silverIndex = 1;
+    let silverScore;
+
+    while (game.scores[silverIndex] && (silverScore = game.scores[silverIndex].reduce((a, b) => a + b)) === bestScore) {
+      silverIndex++;
+    }
+
+    if (!game.scores[silverIndex + 1]) {
+      return
+    }
+
+    let bronzeIndex = silverIndex + 1;
+    let bronzeScore;
+
+    while (game.scores[bronzeIndex] && (bronzeScore = game.scores[silverIndex].reduce((a, b) => a + b)) === silverScore) {
+      bronzeIndex++;
+    }
+
+    while (game.scores[bronzeIndex] && game.scores[bronzeIndex].reduce((a, b) => a + b) === bronzeScore) {
+      if (!bronzeCounts[game.players[silverIndex]]) {
+        bronzeCounts[game.players[silverIndex]] = 0;
+      }
+      bronzeCounts[game.players[silverIndex]]++;
+    }
   })
+
+  return bronzeCounts;
 }
