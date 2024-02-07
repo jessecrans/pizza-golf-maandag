@@ -13,9 +13,9 @@ const PlayerProfile = ({
   return (
     <div>
       <PodiumGraphic
-        goldCount={1}
-        silverCount={2}
-        bronzeCount={3}
+        goldCount={statFunctions.getNumberOfWins()[player]}
+        silverCount={statFunctions.getSilverCounts()[player]}
+        bronzeCount={statFunctions.getBronzeCounts()[player]}
       />
       <StatField
         title='Gemiddelde Score'
