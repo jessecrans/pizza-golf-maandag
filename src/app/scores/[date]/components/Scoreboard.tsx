@@ -49,7 +49,7 @@ const Scoreboard = ({
       </div>
       {
         gameData.players.map((player, index) => (
-          <div key={player} className='grid grid-rows-20 p-2 gap-2 lg:grid-rows-1 lg:grid-cols-26'>
+          <div key={player} className='grid grid-rows-20 py-2 gap-2 lg:grid-rows-1 lg:grid-cols-26'>
             <h4 className='bg-slate-900 bg-opacity-50 px-2 rounded text-lg font-bold text-left lg:col-span-4'>{player}</h4>
             <div className='row-span-18 grid grid-rows-subgrid bg-slate-900 bg-opacity-50 px-2 rounded text-lg lg:row-span-1 lg:col-span-18 lg:grid-cols-18'>
               {
