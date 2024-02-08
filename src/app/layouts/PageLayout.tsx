@@ -1,3 +1,5 @@
+import { faPizzaSlice } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 
 const PageLayout = ({
@@ -14,6 +16,11 @@ const PageLayout = ({
       </h2>
       <div className='bg-green-700 bg-opacity-50 p-4 text-white'>
         {children}
+        <footer
+          className='mt-4 text-center text-xs'
+        >
+          2024 <FontAwesomeIcon icon={faPizzaSlice} /> Pizza Golf Maandag - <span className='italic'>Een Website van Hugo van Schalm en Jesse Crans</span>
+        </footer>
       </div>
     </main>
   )
