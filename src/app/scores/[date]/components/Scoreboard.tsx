@@ -15,7 +15,6 @@ const Scoreboard = ({
   ]
 
   return (
-    // does not work for small screeens because for some reason the grid-cols-[] is not applied
     <div
       style={{
         gridTemplateColumns: `5rem 3.5rem repeat(${gameData.players.length}, minmax(7rem, 1fr))`

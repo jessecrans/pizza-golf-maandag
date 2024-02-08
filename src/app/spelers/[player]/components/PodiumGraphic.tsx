@@ -11,7 +11,7 @@ const PodiumGraphic = ({
 }) => {
   return (
     <div className='font-bold uppercase text-xl inline-block border-2 border-green-400 rounded text-center m-4'>
-      <h3 className='bg-green-400 bg-opacity-80 text-yellow-200 p-2'>Medailles</h3>
+      <h3 className='bg-green-400 bg-opacity-80 text-yellow-200 p-2'>Podiums</h3>
       <div className='inline-flex justify-between items-center gap-6 bg-green-950 bg-opacity-50 p-8 pb-4 rounded-b'>
         <div className='w-14 h-14 relative flex justify-center items-center'>
           <div className='block w-0 h-0 absolute -top-5 border-t-[2.5rem] border-t-blue-500 border-x-[1.25rem] border-x-transparent rounded-b-full'></div>

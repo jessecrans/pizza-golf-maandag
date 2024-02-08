@@ -6,10 +6,10 @@ type GameData = {
   scores: number[][],
 }
 
-const holeNums = [
+export const holeNums = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
 ]
-const holePars = [
+export const holePars = [
   3, 3, 4, 4, 7, 7, 4, 3, 4, 4, 4, 5, 4, 5, 4, 4, 5, 5
 ]
 
@@ -451,4 +451,33 @@ export const getLeaderboardOnHole = (hole: number) => {
   leaderboard.sort((a, b) => a.score - b.score);
 
   return leaderboard;
+}
+
+interface playerGame {
+  player: string,
+  score: number[],
+  totalScore: number
+}
+
+/**
+ * Gets all games sorted by total score
+ * 
+ * @returns Array of all games sorted by total score
+ */
+export const getAllSortedGames = () => {
+  const sortedGames: playerGame[] = [];
+
+  gameData.forEach(game => {
+    game.players.forEach((player, index) => {
+      sortedGames.push({
+        player: player,
+        score: game.scores[index],
+        totalScore: game.scores[index].reduce((a, b) => a + b, 0)
+      })
+    })
+  })
+
+  sortedGames.sort((a, b) => a.totalScore - b.totalScore);
+
+  return sortedGames;
 }

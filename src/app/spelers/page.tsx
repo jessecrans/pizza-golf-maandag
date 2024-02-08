@@ -6,11 +6,17 @@ import Link from 'next/link'
 const Spelers = () => {
   return (
     <PageLayout title='spelers'>
-      <ul className='flex flex-col'>
+      <ul className='flex justify-center flex-wrap items-center gap-4'>
         {
           getAllPlayers().map((player, index) => {
             return (
-              <Link key={index} href={`/spelers/${player}`}>{player}</Link>
+              <Link
+                key={index}
+                href={`/spelers/${player}`}
+                className='text-2xl bg-green-950 bg-opacity-50 p-4 rounded hover:opacity-80 hover:no-underline text-white'
+              >
+                {player}
+              </Link>
             )
           })
         }

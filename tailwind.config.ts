@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        '26': 'repeat(26, minmax(0, 1fr))',
+        '26': 'repeat(26, minmax(1rem, 1fr))',
         '18': 'repeat(18, minmax(0, 1fr))',
       },
       gridColumn: {

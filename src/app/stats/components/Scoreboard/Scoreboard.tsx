@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { getAllPlayers, getAverageScores, getWorstScores, getBestScores, getAverageScoresOnHole, getGamesPlayed, getAverageFinishPosition, getNumberOfPositionPlacements } from '../../util/statFunctions'
+import { getAllPlayers, getAverageScores, getWorstScores, getBestScores, getAverageScoresOnHole, getGamesPlayed, getAverageFinishPosition, getNumberOfPositionPlacements } from '../../../util/statFunctions'
 import { ScoreboardRow } from './ScoreboardRow'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSort } from '@fortawesome/free-solid-svg-icons'
@@ -15,22 +15,22 @@ const Scoreboard = () => {
     }
   } = {
     averageScores: getAverageScores(),
-    wins: getNumberOfPositionPlacements(0),
     averageFinishPositions: getAverageFinishPosition(),
-    gamesPlayed: getGamesPlayed(),
     bestScores: getBestScores(),
-    worstScores: getWorstScores()
+    worstScores: getWorstScores(),
+    wins: getNumberOfPositionPlacements(0),
+    gamesPlayed: getGamesPlayed(),
   }
 
   const scoreHeaderNames: { // 
     [key: string]: string
   } = {
     averageScores: 'Gemiddelde Score',
-    wins: 'Winsten',
     averageFinishPositions: 'Gemiddelde Positie',
-    gamesPlayed: 'Rondes Gespeeld',
     bestScores: 'Beste Score',
-    worstScores: 'Slechtste Score'
+    worstScores: 'Slechtste Score',
+    wins: 'Winsten',
+    gamesPlayed: 'Rondes Gespeeld',
   }
 
   let playerData: {
@@ -49,11 +49,11 @@ const Scoreboard = () => {
     playerData[player] = {
       name: player,
       averageScore: scoreMetrics.averageScores[player],
-      wins: scoreMetrics.wins[player],
       averageFinishPosition: scoreMetrics.averageFinishPositions[player],
-      gamesPlayed: scoreMetrics.gamesPlayed[player],
       bestScore: scoreMetrics.bestScores[player],
-      worstScore: scoreMetrics.worstScores[player]
+      worstScore: scoreMetrics.worstScores[player],
+      wins: scoreMetrics.wins[player],
+      gamesPlayed: scoreMetrics.gamesPlayed[player],
     }
   })
 
@@ -115,7 +115,7 @@ const Scoreboard = () => {
             }}
             className='uppercase flex justify-evenly w-full h-full items-center hover:opacity-75 hover:no-underline'
           >
-            <h3>Player</h3>
+            <h3>Speler</h3>
             <FontAwesomeIcon icon={faSort} />
           </button>
         </div>
