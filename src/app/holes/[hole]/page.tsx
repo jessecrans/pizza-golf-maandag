@@ -28,6 +28,7 @@ const Hole = ({
       <HoleInfo
         par={currentHoleData.par}
         difficulty={currentHoleData.difficulty}
+        holeNum={parseInt(params.hole)}
       />
       <HoleLeaderboard params={params} />
       <HoleArrows params={params} />

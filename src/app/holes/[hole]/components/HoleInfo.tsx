@@ -2,18 +2,21 @@ import React from 'react'
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPizzaSlice } from '@fortawesome/free-solid-svg-icons';
+import { getBestScoreOnHole } from '@/app/util/statFunctions';
 
 const HoleInfo = ({
   par,
-  difficulty
+  difficulty,
+  holeNum
 }: {
   par: number,
-  difficulty: number
+  difficulty: number,
+  holeNum: number
 }) => {
   const maxDifficulty = [1, 2, 3, 4, 5];
 
   return (
-    <div className='grid grid-cols-2 gap-4'>
+    <div className='grid grid-rows-3 sm:grid-cols-3 sm:grid-rows-1 gap-4'>
       <div className='text-center uppercase font-bold'>
         <h3>
           PAR
@@ -22,9 +25,17 @@ const HoleInfo = ({
           {par}
         </p>
       </div>
+      <div className='text-center uppercase font-bold'>
+        <h3>
+          Optimale Score
+        </h3>
+        <p className='bg-green-950 bg-opacity-50 rounded p-2 mt-2 text-xl'>
+          {getBestScoreOnHole(holeNum)}
+        </p>
+      </div>
       <div className='text-center uppercase font-bold lg:inline'>
         <h3>
-          DIFFICULTY
+          Moeilijkheidsgraad
         </h3>
         <div className='bg-green-950 bg-opacity-50 rounded p-2 mt-2'>
           {

@@ -121,10 +121,10 @@ export const getAverageScoresOnHole = (hole: number) => {
 }
 
 /**
- * Gets the average score of all players for the specified hole
+ * Gets the average score over all players for the specified hole
  * 
  * @param hole - The hole to get the average score for
- * @returns The average score of all players for the specified hole
+ * @returns The average score over all players for the specified hole
  */
 export const getAverageScoreOnHole = (hole: number) => {
   const averageScores = getAverageScoresOnHole(hole);
@@ -134,6 +134,24 @@ export const getAverageScoreOnHole = (hole: number) => {
   })
 
   return sum / Object.keys(averageScores).length;
+}
+
+/**
+ * Gets the average score over all games
+ * 
+ * @returns The average score over all players over all games
+ */
+export const getAverageGameScore = () => {
+  let sum = 0;
+  gameData.forEach(game => {
+    game.scores.forEach(scoreArray => {
+      sum += scoreArray.reduce((a, b) => a + b, 0);
+    })
+  })
+
+  const totalNumberOfScores = gameData.reduce((a, b) => a + b.scores.length, 0);
+
+  return sum / totalNumberOfScores;
 }
 
 /**
@@ -480,4 +498,37 @@ export const getAllSortedGames = () => {
   sortedGames.sort((a, b) => a.totalScore - b.totalScore);
 
   return sortedGames;
+}
+
+/**
+ * Gets the best score on the provided hole
+ * 
+ * @param hole - The hole to get the best score for
+ * @returns The best score on the hole
+ */
+export const getBestScoreOnHole = (hole: number) => {
+  let bestScore = 14;
+  gameData.forEach(game => {
+    game.scores.forEach(scoreArray => {
+      if (scoreArray[hole - 1] < bestScore) {
+        bestScore = scoreArray[hole - 1];
+      }
+    })
+  })
+
+  return bestScore;
+}
+
+/**
+ * Gets the best possible game
+ * 
+ * @returns The best game
+ */
+export const getBestGame = () => {
+  let bestGame = 0;
+  holeNums.map(hole => getBestScoreOnHole(hole)).forEach(score => {
+    bestGame += score;
+  })
+
+  return bestGame;
 }
