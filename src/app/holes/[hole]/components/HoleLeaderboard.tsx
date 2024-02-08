@@ -11,7 +11,6 @@ const HoleLeaderboard = ({
   }
 }) => {
   const holeLeaderboard = getLeaderboardOnHole(parseInt(params.hole));
-  console.log(holeLeaderboard);
   const colorArray = ['bg-amber-400', 'bg-zinc-400', 'bg-orange-800'];
 
   return (
