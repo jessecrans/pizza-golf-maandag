@@ -3,6 +3,7 @@ import * as statFunctions from '@/app/util/statFunctions'
 import PodiumGraphic from './PodiumGraphic'
 import StatField from './StatField'
 import PizzaScore from './PizzaScore'
+import Link from 'next/link'
 
 const PlayerProfile = ({
   player
@@ -18,48 +19,64 @@ const PlayerProfile = ({
           value={statFunctions.getPizzaScores()[player]}
         />
         <PodiumGraphic
-          goldCount={statFunctions.getNumberOfWins()[player]}
-          silverCount={statFunctions.getSilverCounts()[player]}
-          bronzeCount={statFunctions.getBronzeCounts()[player]}
+          goldCount={statFunctions.getPlayerNumberOfPositionPlacements(player, 0)}
+          silverCount={statFunctions.getPlayerNumberOfPositionPlacements(player, 1)}
+          bronzeCount={statFunctions.getPlayerNumberOfPositionPlacements(player, 2)}
         />
       </div>
       <hr className='border-green-400 border-2' />
       <div className='flex items-center flex-wrap justify-center'>
         <StatField
-          title='Gemiddelde Score'
-          value={statFunctions.getAverageScores()[player].toFixed(2)}
+          title='Beste Score'
+          value={statFunctions.getPlayerBestScore(player)}
         />
         <StatField
-          title='Beste Score'
-          value={statFunctions.getBestScores()[player]}
+          title='Gemiddelde Score'
+          value={statFunctions.getPlayerAverageScore(player).toFixed(2)}
         />
         <StatField
           title='Slechtste Score'
-          value={statFunctions.getWorstScores()[player]}
+          value={statFunctions.getPlayerWorstScore(player)}
         />
-        <StatField
-          title='Beste Hole'
-          value={statFunctions.getBestHoles()[player] + 1}
-        />
-        <StatField
-          title='Slechtste Hole'
-          value={statFunctions.getWorstHoles()[player] + 1}
-        />
+      </div>
+      <hr className='border-green-400 border-2' />
+      <div className='flex items-center flex-wrap justify-center'>
+        <Link
+          href={`/holes/${statFunctions.getPlayerBestHole(player)}`}
+          className='hover:opacity-80'
+        >
+          <StatField
+            title='Beste Hole'
+            value={statFunctions.getPlayerBestHole(player)}
+          />
+        </Link>
+        <Link
+          href={`/holes/${statFunctions.getPlayerWorstHole(player)}`}
+          className='hover:opacity-80'
+        >
+          <StatField
+            title='Slechtste Hole'
+            value={statFunctions.getPlayerWorstHole(player)}
+          />
+        </Link>
+      </div>
+      <hr className='border-green-400 border-2' />
+      <div className='flex items-center flex-wrap justify-center'>
         <StatField
           title='Hole In Ones'
-          value={statFunctions.getHoleInOnes()[player]}
+          value={statFunctions.getPlayerHoleInOnes(player)}
         />
         <StatField
           title='Albatrosses'
-          value={statFunctions.getAlbatrosses()[player]}
+          value={statFunctions.getPlayerParMinusXCount(player, 3)}
         />
         <StatField
           title='Eagles'
-          value={statFunctions.getEagles()[player]}
+          value={statFunctions.getPlayerParMinusXCount(player, 2)}
         />
         <StatField
           title='Birdies'
-          value={statFunctions.getBirdies()[player]}
+          value={statFunctions.getPlayerParMinusXCount(player, 1)}
         />
       </div >
     </>

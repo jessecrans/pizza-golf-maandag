@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { getAllPlayers, getAverageScores, getWorstScores, getBestScores, getAverageScoresPerHole, getGamesPlayed, getNumberOfWins, getAverageFinishPosition } from '../../util/statFunctions'
+import { getAllPlayers, getAverageScores, getWorstScores, getBestScores, getAverageScoresOnHole, getGamesPlayed, getAverageFinishPosition, getNumberOfPositionPlacements } from '../../util/statFunctions'
 import { ScoreboardRow } from './ScoreboardRow'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSort } from '@fortawesome/free-solid-svg-icons'
@@ -15,7 +15,7 @@ const Scoreboard = () => {
     }
   } = {
     averageScores: getAverageScores(),
-    wins: getNumberOfWins(),
+    wins: getNumberOfPositionPlacements(0),
     averageFinishPositions: getAverageFinishPosition(),
     gamesPlayed: getGamesPlayed(),
     bestScores: getBestScores(),
@@ -57,15 +57,7 @@ const Scoreboard = () => {
     }
   })
 
-  const sortPlayers = (by: {
-    [key: string]: number
-  }) => {
-    setPlayerOrder(
-      Object.keys(by).sort((a, b) => by[b] - by[a])
-    )
-  }
-
-  const sortPlayersExtra = ({
+  const sortPlayers = ({
     by,
     order
   }: {
@@ -134,13 +126,13 @@ const Scoreboard = () => {
                 <button
                   onClick={() => {
                     if (sortingBy === metric) {
-                      sortPlayersExtra({
+                      sortPlayers({
                         by: scoreMetrics[metric],
                         order: 'asc'
                       });
                       setSortingBy('');
                     } else {
-                      sortPlayersExtra({
+                      sortPlayers({
                         by: scoreMetrics[metric],
                         order: 'desc'
                       });

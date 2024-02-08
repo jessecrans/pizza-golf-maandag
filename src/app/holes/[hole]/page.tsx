@@ -4,6 +4,7 @@ import HoleInfo from './components/HoleInfo'
 import HoleImage from './components/HoleImage'
 import HoleArrows from './components/HoleArrows'
 import holeData from '../../../../public/holes/info.json'
+import HoleLeaderboard from './components/HoleLeaderboard'
 
 const Hole = ({
   params
@@ -28,6 +29,7 @@ const Hole = ({
         par={currentHoleData.par}
         difficulty={currentHoleData.difficulty}
       />
+      <HoleLeaderboard params={params} />
       <HoleArrows params={params} />
       {
         currentHoleData.images.map((image, index) => (
