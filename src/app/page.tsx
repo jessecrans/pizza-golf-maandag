@@ -35,6 +35,18 @@ export default function Home() {
       <p>
         Weet je niet wat Pizza Golf Maandag is? Ga naar de <Link href='over'>over</Link> pagina voor meer informatie.
       </p>
+      <br />
+      <p>Of luister naar dit nummer!</p>
+      <div className="flex justify-center items-center m-4">
+        <iframe
+          src="https://www.youtube.com/embed/4O3HqHPZxOQ"
+          title="YouTube video player"
+          className="w-full max-w-screen-md aspect-video"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </div>
     </PageLayout>
   );
 }
