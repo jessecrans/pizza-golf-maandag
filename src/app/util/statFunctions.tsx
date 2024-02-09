@@ -34,7 +34,7 @@ export const getAllPlayers = () => {
   return players;
 }
 
-const players = getAllPlayers(); // All players that have played at least one game
+export const players = getAllPlayers(); // All players that have played at least one game
 
 /**
  * Gets all the games associated with the provided player
