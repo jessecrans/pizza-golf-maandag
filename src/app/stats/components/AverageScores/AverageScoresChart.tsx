@@ -1,54 +1,57 @@
 "use client";
 
 import React from 'react'
-import { Chart, LinearScale, PointElement, Legend, Title } from 'chart.js'
+import { Chart, LinearScale, PointElement, Legend, Title, Tooltip } from 'chart.js'
 import { Scatter } from 'react-chartjs-2'
 import { getAverageScoreOnHole, getPlayerAverageScoreOnHole, holeNums, players } from '@/app/util/statFunctions'
 import autocolors from 'chartjs-plugin-autocolors'
 
-const AverageScoresChart = () => {
-  Chart.register(autocolors, LinearScale, PointElement, Legend, Title)
-
-  const datasets = [{
-    label: "Gemiddelde Score",
-    data: holeNums.map(holeNum => getAverageScoreOnHole(holeNum)),
-    radius: 6,
-  }]
-
-  players.forEach(player => {
-    datasets.push({
-      label: player,
-      data: holeNums.map(holeNum => getPlayerAverageScoreOnHole(player, holeNum)),
-      radius: 6,
-    })
-  })
+const ScoresChart = ({ datasets, dataLabels, title, xLabel, yLabel }: {
+  datasets: {
+    label: string,
+    data: {
+      x: number,
+      y: number
+    }[]
+  }[],
+  dataLabels: number[],
+  title: string,
+  xLabel: string,
+  yLabel: string
+}) => {
+  Chart.register(autocolors, LinearScale, PointElement, Legend, Title, Tooltip)
 
   return (
-    <div className="overflow-auto">
-      <div className="h-[720px] w-[1280px] m-auto p-10 bg-green-950 bg-opacity-50 my-4 flex justify-center overflow-auto">
+    <div className="overflow-auto w-full h-fit">
+      <div className="h-[500px] lg:h-[720px] w-full m-auto p-10 bg-green-950 bg-opacity-50 flex justify-center overflow-auto">
         <Scatter
           options={{
+            elements: {
+              point: {
+                radius: 6
+              }
+            },
             scales: {
               y: {
                 title: {
-                  text: "Score",
+                  text: yLabel,
                   display: true,
                   color: 'white',
                   font: {
                     weight: 'normal'
                   }
                 },
-                max: 14,
                 grid: {
                   color: 'rgba(255, 255, 255, 0.2)',
                 },
                 ticks: {
-                  color: 'white'
+                  color: 'white',
+                  stepSize: 1
                 }
               },
               x: {
                 title: {
-                  text: "Hole",
+                  text: xLabel,
                   display: true,
                   color: 'white'
                 },
@@ -59,10 +62,9 @@ const AverageScoresChart = () => {
                   color: 'white',
                   stepSize: 1
                 }
-              }
+              },
             },
             responsive: true,
-            aspectRatio: 2,
             maintainAspectRatio: false,
             color: 'white',
             plugins: {
@@ -72,16 +74,19 @@ const AverageScoresChart = () => {
               title: {
                 color: 'white',
                 display: true,
-                text: 'Gemiddelde Scores per Hole',
+                text: title,
                 font: {
                   size: 20
                 }
+              },
+              tooltip: {
+                enabled: true
               }
             },
           }}
 
           data={{
-            labels: holeNums,
+            labels: dataLabels,
             datasets: datasets
           }}
         />
@@ -90,4 +95,4 @@ const AverageScoresChart = () => {
   )
 }
 
-export default AverageScoresChart
+export default ScoresChart
