@@ -3,43 +3,26 @@ import PageLayout from '../layouts/PageLayout'
 import Scoreboard from './components/Scoreboard/Scoreboard';
 import AllGames from '../scores/components/AllGames/AllGames';
 import BestGame from './components/BestGame/BestGame';
-import ScoresChart from './components/AverageScores/AverageScoresChart';
+import ScoresPerHoleChart from './components/AverageScores/ScoresPerHoleChart';
 import { getAverageScoreOnHole, getPlayerAverageScoreOnHole, holeNums, players } from '../util/statFunctions';
+import AverageScoresChart from './components/AverageScores/AverageScoresChart';
 
 const Stats = () => {
 
-  const averageDatasets = [{
-    label: "Gemiddelde Score",
-    data: holeNums.map(holeNum => { return { x: getAverageScoreOnHole(holeNum), y: holeNum } })
-  }]
-
-  players.forEach(player => {
-    averageDatasets.push({
-      label: player,
-      data: holeNums.map(holeNum => { return { x: getPlayerAverageScoreOnHole(player, holeNum), y: holeNum } })
-    })
-  })
+  const colors = ['red', 'blue', 'yellow', 'green', 'purple', 'orange', 'pink', 'brown', 'grey', 'black'];
 
   return (
     <PageLayout title='Stats'>
-      <BestGame />
-      <Scoreboard />
       <div className='flex justify-center gap-4 my-4 flex-col lg:flex-row'>
-        <ScoresChart
-          datasets={averageDatasets}
-          dataLabels={holeNums}
-          title={"Gemiddelde scores per hole"}
-          xLabel="Hole"
-          yLabel="Gemiddelde score"
+        <ScoresPerHoleChart
+          colors={colors}
         />
-        <ScoresChart
-          datasets={averageDatasets}
-          dataLabels={Array(10).map((_, i) => i + 1)}
-          title={"Gemiddelde scores per hole"}
-          xLabel="Hole"
-          yLabel="Gemiddelde score"
+        <AverageScoresChart
+          colors={colors}
         />
       </div>
+      <BestGame />
+      <Scoreboard />
     </PageLayout>
   )
 }

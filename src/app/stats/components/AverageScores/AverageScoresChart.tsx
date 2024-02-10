@@ -1,40 +1,48 @@
 "use client";
 
 import React from 'react'
-import { Chart, LinearScale, PointElement, Legend, Title, Tooltip } from 'chart.js'
-import { Scatter } from 'react-chartjs-2'
-import { getAverageScoreOnHole, getPlayerAverageScoreOnHole, holeNums, players } from '@/app/util/statFunctions'
-import autocolors from 'chartjs-plugin-autocolors'
+import { Chart, LinearScale, LineElement, PointElement, Legend, Title, Tooltip, CategoryScale } from 'chart.js'
+import { Line } from 'react-chartjs-2'
+import { getPlayerGames, players, getAllDates } from '@/app/util/statFunctions';
+import gameData from "../../../../../public/game_data/game_database.json"
 
-const ScoresChart = ({ datasets, dataLabels, title, xLabel, yLabel }: {
-  datasets: {
-    label: string,
-    data: {
-      x: number,
-      y: number
-    }[]
-  }[],
-  dataLabels: number[],
-  title: string,
-  xLabel: string,
-  yLabel: string
-}) => {
-  Chart.register(autocolors, LinearScale, PointElement, Legend, Title, Tooltip)
+const AverageScoresChart = ({ colors }: { colors: string[] }) => {
+  Chart.register(LinearScale, CategoryScale, LineElement, PointElement, Legend, Title, Tooltip);
+
+  const data: { [key: string]: { x: string, y: number }[] } = {};
+  players.forEach(player => data[player] = []);
+  gameData.forEach(game => {
+    game.players.forEach((player, index) => {
+      data[player].push({
+        x: game.date,
+        y: game.scores[index].reduce((a, b) => a + b, 0)
+      })
+    })
+  })
+
+  const datasets = players.map((player, index) => {
+    return {
+      label: player,
+      data: data[player],
+      borderColor: colors[index],
+      backgroundColor: colors[index],
+    }
+  })
 
   return (
-    <div className="overflow-auto w-full h-fit">
-      <div className="h-[500px] lg:h-[720px] w-full m-auto p-10 bg-green-950 bg-opacity-50 flex justify-center overflow-auto">
-        <Scatter
+    <div className="w-full overflow-auto">
+      <div className='h-[500px] lg:h-[720px] min-w-[600px] m-auto p-10 bg-green-950 bg-opacity-50 flex justify-center overflow-auto rounded'>
+        <Line
           options={{
             elements: {
               point: {
-                radius: 6
+                radius: 6,
               }
             },
             scales: {
               y: {
                 title: {
-                  text: yLabel,
+                  text: "Score",
                   display: true,
                   color: 'white',
                   font: {
@@ -46,15 +54,9 @@ const ScoresChart = ({ datasets, dataLabels, title, xLabel, yLabel }: {
                 },
                 ticks: {
                   color: 'white',
-                  stepSize: 1
                 }
               },
               x: {
-                title: {
-                  text: xLabel,
-                  display: true,
-                  color: 'white'
-                },
                 grid: {
                   color: 'rgba(255, 255, 255, 0.2)',
                 },
@@ -68,13 +70,10 @@ const ScoresChart = ({ datasets, dataLabels, title, xLabel, yLabel }: {
             maintainAspectRatio: false,
             color: 'white',
             plugins: {
-              autocolors: {
-                mode: 'label'
-              },
               title: {
                 color: 'white',
                 display: true,
-                text: title,
+                text: "Score per game",
                 font: {
                   size: 20
                 }
@@ -84,15 +83,16 @@ const ScoresChart = ({ datasets, dataLabels, title, xLabel, yLabel }: {
               }
             },
           }}
-
-          data={{
-            labels: dataLabels,
-            datasets: datasets
-          }}
+          data={
+            {
+              labels: getAllDates(),
+              datasets: datasets
+            }
+          }
         />
       </div>
     </div>
   )
 }
 
-export default ScoresChart
+export default AverageScoresChart

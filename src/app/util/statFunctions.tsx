@@ -532,3 +532,20 @@ export const getBestGame = () => {
 
   return bestGame;
 }
+
+/**
+ * Get all dates of games played
+ * 
+ * @returns All dates of games played
+ */
+export const getAllDates = () => {
+  const dates: string[] = [];
+
+  gameData.forEach(game => {
+    if (!dates.includes(game.date)) {
+      dates.push(game.date);
+    }
+  })
+
+  return dates;
+}
