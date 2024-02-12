@@ -591,7 +591,7 @@ export const getPlayerCurrentStreak = (player: string) => {
   let currentStreak = 0;
 
   for (let i = gameData.length - 1; i > 0; i--) {
-    if (!(gameData[i].players[0] === player)) {
+    if (!(getWinnersOfGame(gameData[i]).includes(player))) {
       break;
     }
     currentStreak++;
