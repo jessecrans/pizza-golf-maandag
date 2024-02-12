@@ -549,3 +549,69 @@ export const getAllDates = () => {
 
   return dates;
 }
+
+/**
+ * Gets the winners of the passed game
+ * 
+ * @param game - The game of which to determine the winners
+ * @returns - The winners of the specified game
+ */
+const getWinnersOfGame = (game: {
+  date: string
+  players: string[]
+  scores: number[][]
+}) => {
+  const bestScore = game.scores[0].reduce((a, b) => a + b, 0);
+  const winners = [game.players[0]]
+  let i = 1;
+  while (game.scores[i].reduce((a, b) => a + b, 0) === bestScore) {
+    winners.push(game.players[i++]);
+  }
+
+  return winners;
+}
+
+/**
+ * Gets the winners of the latest game that was played 
+ * 
+ * @returns The winners of the latest game
+ */
+export const getLatestWinners = () => {
+  const latestGame = gameData[gameData.length - 1];
+
+  return getWinnersOfGame(latestGame);
+};
+
+/**
+ * Get current streak of the latest winner
+ * 
+ * @returns Current streak of the latest winner
+ */
+export const getPlayerCurrentStreak = (player: string) => {
+  let currentStreak = 0;
+
+  for (let i = gameData.length - 1; i > 0; i--) {
+    if (!(gameData[i].players[0] === player)) {
+      break;
+    }
+    currentStreak++;
+  }
+
+  return currentStreak;
+}
+
+export const getPlayerLargestStreak = (player: string) => {
+  let greatestStreak = 0;
+  let currentStreak = 0;
+
+  gameData.forEach(game => {
+    if (getWinnersOfGame(game).includes(player)) {
+      currentStreak++;
+      greatestStreak = Math.max(greatestStreak, currentStreak);
+    } else {
+      currentStreak = 0;
+    }
+  })
+
+  return greatestStreak;
+}

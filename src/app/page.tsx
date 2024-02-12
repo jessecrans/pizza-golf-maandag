@@ -1,21 +1,9 @@
 import PageLayout from "./layouts/PageLayout";
 import Link from "next/link";
 import gameData from "../../public/game_data/game_database.json"
+import { getLatestWinners, getPlayerCurrentStreak } from "@/app/util/statFunctions"
 
 export default function Home() {
-
-  const getLatestWinner = () => {
-    const latestGame = gameData[gameData.length - 1];
-
-    const bestScores = latestGame.scores.reduce((maxScores, currentScores) => {
-      const thisScore = currentScores.reduce((sum, currentVal) => sum + currentVal);
-      const bestScore = maxScores.reduce((sum, currentVal) => sum + currentVal);
-
-      return thisScore < bestScore ? currentScores : maxScores
-    })
-
-    return latestGame.players[latestGame.scores.indexOf(bestScores)]
-  };
 
   return (
     <PageLayout title="Home">
@@ -25,7 +13,11 @@ export default function Home() {
       <br />
       <div className="text-center">
         <h2 className="text-yellow-200 text-2xl font-bold">Winnaar van de week</h2>
-        <p className="text-white text-4xl">{getLatestWinner()}</p>
+        {
+          getLatestWinners().map(winner => {
+            return <p className="text-white text-4xl">{winner} 🔥{getPlayerCurrentStreak(winner)}</p>
+          })
+        }
       </div>
       <br />
       <p>

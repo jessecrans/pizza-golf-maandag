@@ -38,6 +38,10 @@ const PlayerProfile = ({
           title='Slechtste Score'
           value={statFunctions.getPlayerWorstScore(player)}
         />
+        <StatField
+          title='Grootste winstreak'
+          value={statFunctions.getPlayerLargestStreak(player)}
+        />
       </div>
       <hr className='border-green-400 border-2' />
       <div className='flex items-center flex-wrap justify-center'>
