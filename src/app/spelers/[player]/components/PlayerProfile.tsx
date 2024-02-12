@@ -42,6 +42,10 @@ const PlayerProfile = ({
           title='Grootste winstreak'
           value={statFunctions.getPlayerLargestStreak(player)}
         />
+        <StatField
+          title='Aanwezigheidspercentage'
+          value={+statFunctions.getPlayerParticipationPercentage(player).toFixed(2) + "%"}
+        />
       </div>
       <hr className='border-green-400 border-2' />
       <div className='flex items-center flex-wrap justify-center'>

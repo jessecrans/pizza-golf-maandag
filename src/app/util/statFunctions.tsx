@@ -600,6 +600,12 @@ export const getPlayerCurrentStreak = (player: string) => {
   return currentStreak;
 }
 
+/**
+ * Gets the largest win streak of the specified player over all games
+ * 
+ * @param player - The player for which to get the largest streak
+ * @returns The largest win streak of the specified player
+ */
 export const getPlayerLargestStreak = (player: string) => {
   let greatestStreak = 0;
   let currentStreak = 0;
@@ -614,4 +620,14 @@ export const getPlayerLargestStreak = (player: string) => {
   })
 
   return greatestStreak;
+}
+
+/**
+ * Gets the percentage of games in which the specified player has participated
+ * 
+ * @param player - The player for which to get the percentage of games player
+ * @returns The percentage the games in which the player has participated
+ */
+export const getPlayerParticipationPercentage = (player: string) => {
+  return getPlayerGamesPlayed(player) / gameData.length * 100;
 }
