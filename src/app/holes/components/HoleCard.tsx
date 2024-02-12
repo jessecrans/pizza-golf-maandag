@@ -15,7 +15,7 @@ const HoleCard = ({
       href={`/holes/${hole}`}
     >
       <div className='relative'>
-        <Image
+        <img
           src={image}
           alt={`Hole ${hole} image`}
           className='rounded -z-1'
