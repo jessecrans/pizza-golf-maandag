@@ -24,6 +24,16 @@ const PlayerProfile = ({
           bronzeCount={statFunctions.getPlayerNumberOfPositionPlacements(player, 2)}
         />
       </div>
+      <div className='flex justify-center items-center flex-col sm:flex-row'>
+        <StatField
+          title='Aanwezigheidspercentage'
+          value={+statFunctions.getPlayerParticipationPercentage(player).toFixed(2) + "%"}
+        />
+        <StatField
+          title='Grootste winstreak'
+          value={statFunctions.getPlayerLargestStreak(player)}
+        />
+      </div>
       <hr className='border-green-400 border-2' />
       <div className='flex items-center flex-wrap justify-center'>
         <StatField
@@ -37,14 +47,6 @@ const PlayerProfile = ({
         <StatField
           title='Slechtste Score'
           value={statFunctions.getPlayerWorstScore(player)}
-        />
-        <StatField
-          title='Grootste winstreak'
-          value={statFunctions.getPlayerLargestStreak(player)}
-        />
-        <StatField
-          title='Aanwezigheidspercentage'
-          value={+statFunctions.getPlayerParticipationPercentage(player).toFixed(2) + "%"}
         />
       </div>
       <hr className='border-green-400 border-2' />
