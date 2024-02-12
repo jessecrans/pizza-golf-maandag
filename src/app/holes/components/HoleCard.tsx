@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const HoleCard = ({
   hole,
@@ -14,7 +15,7 @@ const HoleCard = ({
       href={`/holes/${hole}`}
     >
       <div className='relative'>
-        <img
+        <Image
           src={image}
           alt={`Hole ${hole} image`}
           className='rounded -z-1'
