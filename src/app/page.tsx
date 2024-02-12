@@ -14,8 +14,8 @@ export default function Home() {
       <div className="text-center">
         <h2 className="text-yellow-200 text-2xl font-bold">Winnaar van de week</h2>
         {
-          getLatestWinners().map(winner => {
-            return <p className="text-white text-4xl">{winner} 🔥{getPlayerCurrentStreak(winner)}</p>
+          getLatestWinners().map((winner, index) => {
+            return <p key={index} className="text-white text-4xl">{winner} 🔥{getPlayerCurrentStreak(winner)}</p>
           })
         }
       </div>
