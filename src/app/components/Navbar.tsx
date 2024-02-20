@@ -20,7 +20,11 @@ const Navbar = () => {
             className='sm:hidden'
           />
         </Link>
-        <h1>Pizza Golf Maandag</h1>
+        <div>
+          <h1 className='relative'>
+            Pizza Golf <s>Maandag</s> Dinsdag
+          </h1>
+        </div>
         <button
           className='sm:hidden'
           onClick={toggleNavbar}
