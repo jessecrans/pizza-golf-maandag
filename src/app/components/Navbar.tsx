@@ -22,7 +22,7 @@ const Navbar = () => {
         </Link>
         <div>
           <h1 className='relative'>
-            Pizza Golf <s>Maandag</s> Dinsdag
+            Pizza Golf Maandag
           </h1>
         </div>
         <button
