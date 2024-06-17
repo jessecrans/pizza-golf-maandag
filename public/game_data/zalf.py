@@ -4,10 +4,12 @@ from typing import Dict, List, Tuple, TypedDict
 import json
 import re
 
+
 class Game(TypedDict):
     date: str
     players: List[str]
     scores: List[int]
+
 
 PLAYERS = [
     "GSkillz",
@@ -18,6 +20,8 @@ PLAYERS = [
 ]
 
 # reading entering games
+
+
 def read_games() -> List[Game]:
     """Reads all games from the database
 
@@ -27,6 +31,7 @@ def read_games() -> List[Game]:
     with open("game_database.json", "r") as f:
         games = json.load(f)
     return games
+
 
 def get_all_previous_players() -> List[str]:
     """Gets all players from previous games
@@ -40,6 +45,7 @@ def get_all_previous_players() -> List[str]:
             if player not in previous_players:
                 previous_players.append(player)
     return previous_players
+
 
 def enter_game() -> Game:
     """Gets user input for a new game
@@ -80,20 +86,22 @@ def enter_game() -> Game:
             print("Invalid input. Please enter a number")
             continue
         elif int(user_input) < 0 or int(user_input) > len(previous_players):
-            print(f"Invalid input. Please enter a number between 0 and {len(previous_players)}")
+            print(
+                f"Invalid input. Please enter a number between 0 and {len(previous_players)}")
             continue
         elif previous_players and previous_players[int(user_input)] in players:
             print("Player already entered. Please enter a different player")
             continue
         else:
             players.append(previous_players[int(user_input)])
-    
+
     # Get scores
     scores = []
     for player in players:
         player_score = []
         while True:
-            user_input = input(f"Score for: {player} on hole {len(player_score) + 1}:\t")
+            user_input = input(
+                f"Score for: {player} on hole {len(player_score) + 1}:\t")
             if not user_input.isdigit():
                 print("Invalid input. Please enter a number")
                 continue
@@ -105,7 +113,7 @@ def enter_game() -> Game:
                 continue
             else:
                 player_score.append(int(user_input))
-            
+
             if len(player_score) == 18:
                 scores.append(player_score)
                 break
@@ -116,6 +124,7 @@ def enter_game() -> Game:
         "scores": scores
     }
 
+
 def enter_game_to_database():
     """Enters a new game to the database
     """
@@ -125,6 +134,7 @@ def enter_game_to_database():
     with open("game_database.json", "w") as f:
         json.dump(games, f, indent=4)
     print("Game entered successfully")
+
 
 while True:
     print("Actions:")
