@@ -12,12 +12,22 @@ export default function Home() {
       </p>
       <br />
       <div className="text-center">
-        <h2 className="text-yellow-200 text-2xl font-bold">Winnaar van de week</h2>
-        {
+        {/* <h2 className="text-yellow-200 text-2xl font-bold">Winnaar van de week</h2> */}
+        {/* {
           getLatestWinners().map((winner, index) => {
             return <p key={index} className="text-white text-4xl">{winner} 🔥{getPlayerCurrentStreak(winner)}</p>
           })
-        }
+        } */}
+        <h2 className="text-yellow-200 text-2xl font-bold">Attentie Pizza Golf Maandag Spelers en Kijkers</h2>
+        <div className="border p-4 m-4 rounded-xl border-2 bg-green-950 border-yellow-200 bg-opacity-50">
+          <p>
+            Al <b>DrVanox</b> z'n resultaten zijn met terugwerkende kracht ongeldig verklaard vanwege zijn schuld-bekentenis van het gebruiken van een spiekbriefje tijdens het spelen. Hier zouden de precieze richtingen en schotkracht-niveaus op hebben gestaan. Hierdoor heeft hij een aanzienlijk voordeel ervaren tijdens de speelrondes. Hiermee laat hij de organisatie geen andere keuze dan de eerdergenoemde straf.  
+          </p>
+          <br/>
+          <p>
+            Met het oog voor transparantie zullen zijn scores wel te zien blijven. Al is dat wel met de nodige aantekening.
+          </p>
+        </div>
       </div>
       <br />
       <p>

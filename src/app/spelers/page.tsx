@@ -15,7 +15,7 @@ const Spelers = () => {
                 href={`/spelers/${player}`}
                 className='text-2xl bg-green-950 bg-opacity-50 p-4 rounded hover:opacity-80 hover:no-underline text-white'
               >
-                {player}
+                {player === "DrVanox" ? "DrVanox*" : player}
               </Link>
             )
           })

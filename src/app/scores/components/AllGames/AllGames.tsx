@@ -35,7 +35,9 @@ const AllGames = () => {
       {
         getAllSortedGames().map((game, index) => (
           <div key={index} className='grid p-2 gap-2 grid-cols-[10rem_repeat(18,_minmax(2rem,_1fr))_10rem]'>
-            <h4 className='bg-slate-900 bg-opacity-50 px-2 rounded text-lg font-bold text-left col-span-1 min-w-fit'>{game.player}</h4>
+            <h4 className='bg-slate-900 bg-opacity-50 px-2 rounded text-lg font-bold text-left col-span-1 min-w-fit'>
+              {game.player === "DrVanox" ? "DrVanox*" : game.player}
+            </h4>
             <div className='grid bg-slate-900 bg-opacity-50 px-2 rounded text-lg col-span-18 grid-cols-subgrid'>
               {
                 game.score.map((holeScore, index) => {
