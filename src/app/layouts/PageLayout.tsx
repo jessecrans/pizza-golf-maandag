@@ -19,7 +19,7 @@ const PageLayout = ({
         {children}
         <footer className='mt-4 text-center text-xs'>
           {title === "Home" || title === "Holes" || title === "Over" ? "" :
-            <p>* Al DrVanox z'n resultaten zijn ongeldig verklaard wegens valsspelen. <Link href="/">Voor meer info zie de uitspraak van de organisatie.</Link></p>
+            <p>* Al DrVanox z&apos;n resultaten zijn ongeldig verklaard wegens valsspelen. <Link href="/">Voor meer info zie de uitspraak van de organisatie.</Link></p>
           }
           <p>
             2024 <FontAwesomeIcon icon={faPizzaSlice} /> Pizza Golf Maandag - <span className='italic'>Een Website van Hugo van Schalm en Jesse Crans</span>
