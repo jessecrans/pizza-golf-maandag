@@ -21,7 +21,7 @@ export default function Home() {
         <h2 className="text-yellow-200 text-2xl font-bold">Attentie Pizza Golf Maandag Spelers en Kijkers</h2>
         <div className="border p-4 m-4 rounded-xl border-2 bg-green-950 border-yellow-200 bg-opacity-50">
           <p>
-            Al <b>DrVanox</b> z&apos;n resultaten zijn met terugwerkende kracht ongeldig verklaard vanwege zijn schuld-bekentenis van het gebruiken van een spiekbriefje tijdens het spelen. Hier zouden de precieze richtingen en schotkracht-niveaus op hebben gestaan. Hierdoor heeft hij een aanzienlijk voordeel ervaren tijdens de speelrondes. Hiermee laat hij de organisatie geen andere keuze dan de eerdergenoemde straf.  
+            Al <b>DrVanox</b> z&apos;n resultaten zijn met terugwerkende kracht ongeldig verklaard vanwege zijn schuld-bekentenis van het gebruiken van een spiekbriefje tijdens het spelen. Hier zouden per schot en hole, precieze richtingen en schotkracht-niveaus op hebben gestaan. Hierdoor heeft hij een aanzienlijk voordeel ervaren tijdens de speelrondes. Hiermee laat hij de organisatie geen andere keuze dan de eerdergenoemde straf.  
           </p>
           <br/>
           <p>
